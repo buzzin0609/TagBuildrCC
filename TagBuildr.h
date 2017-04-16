@@ -10,8 +10,8 @@ namespace NodeDOM {
 	#define TAGBUILDR
 	class TagBuildr {
 		string tag, attrs, classes = "", id = "", attrStr = "";
-		string selfClosingTags[3] = {
-			"img", "br", "hr"
+		string selfClosingTags[4] = {
+			"img", "br", "hr", "meta"
 		};
 		stringstream stream;
 
