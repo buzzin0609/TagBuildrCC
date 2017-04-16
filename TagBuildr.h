@@ -6,6 +6,8 @@ namespace NodeDOM {
 
 	using namespace std;
 
+	#ifndef TAGBUILDR
+	#define TAGBUILDR
 	class TagBuildr {
 		string tag, attrs, classes = "", id = "", attrStr = "";
 		string selfClosingTags[3] = {
@@ -116,5 +118,5 @@ namespace NodeDOM {
 		return selfClosingTags->find(tag) != -1;
 	}
 
-	
+	#endif
 }
