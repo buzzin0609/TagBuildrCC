@@ -18,7 +18,7 @@ namespace NodeDOM {
 		string trim(string);
 		bool isSelfClosing(string);
 	public:
-		string render(string, string);
+		string render(string, vector<string>);
 	};
 
 	void TagBuildr::parse(string tagString) {
@@ -71,7 +71,7 @@ namespace NodeDOM {
 		attrs.erase(attrs.length() - 1, 1);
 	}
 
-	string TagBuildr::render(string tagString, string children = "") {
+	string TagBuildr::render(string tagString, vector<string> children = vector<string>()) {
 		parse(tagString);
 
 		stream << "<" << tag << id << classes;
@@ -79,11 +79,14 @@ namespace NodeDOM {
 		if (!attrStr.empty()) {
 			stream << " " << attrs;
 		}
-		
+
 		if (!isSelfClosing(tag)) {
 			stream << ">";
 			if (!children.empty()) {
-				stream << children;
+				while (!children.empty()) {
+					stream << children.front();
+					children.erase(children.begin());
+				}
 			}
 
 			stream << "</" << tag << ">";
@@ -112,8 +115,6 @@ namespace NodeDOM {
 	bool TagBuildr::isSelfClosing(string tag) {
 		return selfClosingTags->find(tag) != -1;
 	}
-
-	
 
 	
 }
