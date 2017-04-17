@@ -10,8 +10,8 @@ namespace NodeDOM {
 	#define TAGBUILDR
 	class TagBuildr {
 		string tag, attrs, classes = "", id = "", attrStr = "";
-		string selfClosingTags[4] = {
-			"img", "br", "hr", "meta"
+		vector<string> selfClosingTags = {
+			"img", "br", "hr", "meta", "link"
 		};
 		stringstream stream;
 
@@ -115,7 +115,7 @@ namespace NodeDOM {
 	}
 
 	bool TagBuildr::isSelfClosing(string tag) {
-		return selfClosingTags->find(tag) != -1;
+		return std::find(selfClosingTags.begin(), selfClosingTags.end(), tag) != selfClosingTags.end();
 	}
 
 	#endif
